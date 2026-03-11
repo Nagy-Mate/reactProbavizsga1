@@ -9,7 +9,6 @@ function Cart() {
   const [kosar, setKosar] = useState<Array<number>>(
     JSON.parse(localStorage.getItem("kosar") ?? "[]"),
   );
-  const [osszeg, setOsszeg] = useState<number>();
 
   useEffect(() => {
     apiClient
@@ -25,15 +24,11 @@ function Cart() {
   const removeItem = (index: number) => {
     setKosar(kosar.filter((k, v) => v != index));
   };
-  useEffect(() => {
-    let sum = 0;
-    kosar.map((id) => {
-      const pizza = pizzak.find((p) => p.id == id);
-      if (pizza) sum += pizza?.ar;
-    });
-    setOsszeg(sum);
-  }, [kosar, pizzak]);
 
+const osszeg = kosar.reduce((sum, id) => {
+  const pizza = pizzak.find((p) => p.id === id);
+  return pizza ? sum + pizza.ar : sum;
+}, 0);
   return (
     <>
       {kosar.length == 0 ? (

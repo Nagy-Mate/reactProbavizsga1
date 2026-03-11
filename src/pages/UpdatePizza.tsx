@@ -21,7 +21,7 @@ function UpdatePizza() {
       .get(`/pizzak/${id}`)
       .then((res) => setPizza(res.data))
       .catch(() => toast.error("Hiba a pizzak lekérésébe"));
-  }, []);
+  }, [id]);
 
   const savePizza = () => {
     apiClient
@@ -60,7 +60,6 @@ function UpdatePizza() {
             Pizza ára:{" "}
             <input
               type="number"
-             
               placeholder={pizza?.ar.toString()}
               onChange={(e) =>
                 setNewPizza({ ...newPizza, ar: Number(e.target.value) })

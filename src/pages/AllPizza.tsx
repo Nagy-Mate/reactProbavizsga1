@@ -85,6 +85,7 @@ const AllPizza = () => {
   return (
     <>
       <Container>
+        All pizza 
         <Row>{pizzak.map((p) => generateCard(p))}</Row>
       </Container>
     </>

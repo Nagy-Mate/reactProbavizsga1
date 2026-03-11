@@ -14,7 +14,7 @@ function OnePizza() {
       .get(`/pizzak/${id}`)
       .then((res) => setPizza(res.data))
       .catch(() => toast.error("Hiba a pizzak lekérésébe"));
-  }, []);
+  }, [id]);
   return (
     <>
       <Container style={{textAlign:"center"}}>

@@ -43,29 +43,40 @@ const AllPizza = () => {
         />
         <Card.Body>
           <Card.Title>{p.nev}</Card.Title>
-          <Card.Text>{p.ar} Ft</Card.Text>
+          <Card.Text>
+            {p.ar} Ft{" "}
+            <Button
+              variant="success"
+              style={{ float: "right" }}
+              onClick={() => {
+                if (kosar.includes(p.id)) {
+                  toast.error("Ez már a kosárban van");
+                } else {
+                  setKosar([...kosar, p.id]);
+                  toast.success("Kosárba rakva");
+                }
+              }}
+            >
+              Kosárba
+            </Button>
+          </Card.Text>
         </Card.Body>
-        <Card.Footer>
+        <Card.Footer style={{ textAlign: "center" }}>
+          <Link to={`/onePizza/${p.id}`}>
+            <Button variant="primary" style={{marginRight: 5}}>Részletek</Button>
+          </Link>
           <Button
-            variant="success"
-            onClick={() => {
-              if (kosar.includes(p.id)) {
-                toast.error("Ez már a kosárban van");
-              } else {
-                setKosar([...kosar, p.id]);
-                toast.success("Kosárba rakva");
-              }
-            }}
+            variant="danger"
+            onClick={() => deletePizza(p.id)}
             style={{ marginRight: 5 }}
           >
-            Kosárba
-          </Button>
-          <Link to={`/onePizza/${p.id}`}>
-            <Button variant="primary">Részletek</Button>{" "}
-          </Link>
-          <Button variant="danger" onClick={() => deletePizza(p.id)}>
             Törlés
           </Button>
+          <Link to={`/updatePizza/${p.id}`}>
+            <Button variant="warning" style={{ marginTop: 5 }}>
+              Szerkesztés
+            </Button>{" "}
+          </Link>
         </Card.Footer>
       </Card>
     );

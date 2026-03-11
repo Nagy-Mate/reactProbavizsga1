@@ -10,7 +10,6 @@ const AllPizza = () => {
   const [kosar, setKosar] = useState<Array<number>>(
     JSON.parse(localStorage.getItem("kosar") ?? "[]"),
   );
-  const [osszeg, setOsszeg] = useState<number>(0);
 
   useEffect(() => {
     apiClient
@@ -85,7 +84,7 @@ const AllPizza = () => {
   return (
     <>
       <Container>
-        All pizza 
+        All pizza   
         <Row>{pizzak.map((p) => generateCard(p))}</Row>
       </Container>
     </>
